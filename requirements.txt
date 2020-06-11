@@ -21,7 +21,7 @@ DAWG-Python==0.7.2
 deeppavlov==0.8.0
 defusedxml==0.6.0
 dependency-decoding @ git+https://github.com/andersjo/dependency_decoding@79510908223b93bd4c1fb0409a2a66dd75577c2c
-Django==3.0
+Django==3.0.0
 django-allauth==0.41.0
 django-rest-framework==0.1.0
 djangorestframework==3.11.0
