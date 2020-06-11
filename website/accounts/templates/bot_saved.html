@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block static %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base-css.css' %}">
+{% endblock %}
+
+
+{% block style %}
+    <canvas id="canvas" data-image="https://pngimage.net/wp-content/uploads/2018/06/человек-png-иконка-8.png"></canvas>
+    <script src="/static/js/base-js.js"></script>
+{% endblock %}
+
+{% block title %} Бот сохранён {% endblock %}
+
+
+{% block content %}
+
+    <div class="intro" style="transform: translate(-50%, -50%);">
+    <div class="mainlabel"><a href="/bot/{{ bot.id }}">Бот</a>{% if new_bot %} сохранён
+    {% else %} изменён {% endif %}</div> <br><br><br>
+
+    <a href="/"><button>ГЛАВНАЯ</button></a>
+    <a href="/accounts/{{ user_id }}"><button>ЛИЧНЫЙ КАБИНЕТ</button></a>
+    
+    </div>
+    {% include "footer.html" %}
+{% endblock %}

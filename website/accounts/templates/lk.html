@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Личный кабинет {% endblock %}
+
+
+{% block static %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lk.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base-css.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+    <link rel="shortcut icon" href="{%  static '/img/favicon.ico' %}" type="image/x-icon">
+{% endblock %}
+
+
+{% block style %}
+    <canvas id="canvas" data-image="https://pngimage.net/wp-content/uploads/2018/06/человек-png-иконка-8.png"></canvas>
+    <script src="/static/js/base-js.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="intro" style="transform: translate(-50%, -100%);">
+
+        <a href="/"><button>ГЛАВНАЯ</button></a>
+        <a href="/bot/"><button>СОЗДАТЬ</button></a>
+        <a href="{% url 'password_reset' %}"><button>СМЕНИТЬ ПАРОЛЬ</button></a>
+        <button onclick="delete_user()">УДАЛИТЬ АККАУНТ</button>
+	<a href="/accounts/logout"><button>ВЫЙТИ</button></a>
+
+
+        <div class="mainlabel unselectable">МОИ БОТЫ</div>
+            {% if bots|length == 0 %}
+                <br><div class="mainlabel unselectable">У ВАС НЕТ БОТОВ</div>
+            {% endif %}
+            <table id="id_table" style="position:absolute;" >
+
+                {% for bot_by_3 in bots %}
+                    <tr>
+                        {% for bot in bot_by_3 %}
+                            <th class="bot-but unselectable" onclick="window.location='/bot/{{ bot.id }}';">
+                                {{ bot.name}}
+                            </th>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+
+            </table>
+
+    </div>
+{% include "footer.html" %}
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        function delete_user(){
+            $.ajax({
+                headers: { "X-CSRFToken": '{{ csrf_token }}' },
+                method: 'DELETE',
+                url: '/accounts/{{ id }}',
+                success: function(answer) {
+                    window.location.href = '/';
+                }
+            });
+        }
+    </script>
+{% endblock %}

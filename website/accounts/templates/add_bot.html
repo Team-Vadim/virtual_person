@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Список ботов {% endblock %}
+
+
+{% block script %}
+    <script src="/static/js/base-js.js"></script>
+    <script src="/static/js/button.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="intro" style="transform: translate(-50%, -50%);">
+
+        <svg class="liquid-button"
+            data-text="BUTTON"
+            data-force-factor="0.1"
+            data-layer-1-viscosity="0.5"
+            data-layer-2-viscosity="0.4"
+            data-layer-1-mouse-force="400"
+            data-layer-2-mouse-force="500"
+            data-layer-1-force-limit="1"
+            data-layer-2-force-limit="2"
+            data-color1="#4DE7BF"
+            data-color2="#0A3FC7"
+            data-color3="#2A62F4">
+        </svg>
+
+        <div class="mainlabel">Добавить бота:</div><br><br><br>
+
+        <form method="post">
+            {% csrf_token %}
+        Виртуальный возраст бота: {{ form.age }}<br><br>
+        Пол: {{ form.gender }}<br><br>
+        Социальная сеть: {{ form.social_network }}<br><br>
+        Делать посты раз в: {{ form.time }}<br><br>
+        Логин пользователя: {{ form.login }}<br><br>
+        Пароль пользователя: <input type="password" name="password" minlength="1" required><br><br>
+        Отвечать на сообщения: {{ form.active_messages }}<br><br>
+        Писать посты: {{ form.active_posts }}<br><br>
+        Принимать в друзья: {{ form.active_friends }}<br><br><br>
+
+            {% for field in form %}
+               <!-- {{ field.label_tag }}
+                <br>
+
+                <div class="select-box"> {{ field }} </div> -->
+
+                {% if field.help_text %}
+                    <small style="display: none">{{ field.help_text }}</small>
+                {% endif %}
+
+                {% for error in field.errors %}
+                    <p style="color: #ff0000">{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+            <button onclick="history.back();{ return false; }">НАЗАД</button>
+            <button type="submit">ДОБАВИТЬ</button>
+        </form>
+    </div>
+    <script>
+        window.onload = function(){
+            if('{{mess}}' !== '')
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Ошибка...',
+                  text: '{{mess}}',
+                })
+        }
+    </script>
+    {% include "footer.html" %}
+{% endblock %}
+

@@ -1,0 +1,163 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <title>{% block title %}Регистрация{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base-css.css' %}">
+    <link rel="shortcut icon" href="{%  static '/img/favicon.ico' %}" type="image/x-icon">
+
+
+
+<body>
+<canvas id="canvas" data-image="https://pngimage.net/wp-content/uploads/2018/06/человек-png-иконка-8.png"></canvas>
+<script src="/static/js/base-js.js"></script>
+
+
+<div class="intro" style="transform: translate(-50%, -50%);">
+    {% block content %}
+    <div class="mainlabel">РЕГИСТРАЦИЯ</div><br><br><br>
+    <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            <p>Данные логин и/или почта уже занят.</p>
+            <div id="errors">
+		        <div class="inner">
+			        <p>There were some errors in the information you entered. Please correct the following:</p>
+			        {{ form.non_field_errors }}
+			        <ul>
+				        {% for field in form %}
+					        {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+				        {% endfor %}
+			        </ul>
+		        </div>
+	        </div>
+        {% endif %}
+        <label class="inputtext"> Логин: </label> <br><br> {{ form.username }} <br><br>
+        <label class="inputtext">E-mail: </label><br> <br>{{ form.email }} <br><br>
+        <label class="inputtext">Пароль:</label> <br><br> {{ form.password1 }} <br><br>
+        <label class="inputtext">Пароль ещё разок: </label><br><br> {{ form.password2 }} <br><br><br><br>
+
+        <button type="submit" class="button-container">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+    </form>
+    {% endblock %}
+    <script>
+        window.onload = function(){
+            if('{{mess}}' !== '')
+                Swal.fire({
+                      icon: 'error',
+                      title: 'Ошибка...',
+                      text: '{{mess}}',
+                    })
+        }
+    </script>
+    <script>
+        $("#id_username").change(function () {
+            let data = { csrfmiddlewaretoken: '{{ csrf_token }}', username: $("#id_username").val() };
+            $.ajax
+            ({
+
+                type: "POST",
+                data: data,
+                url: '/accounts/signup/',
+                success:function(serverData)
+                {
+                    console.log(serverData['username_occupation']);
+                    if (serverData['username_occupation']) {
+                        document.getElementById("id_username").setAttribute('title', 'Логин уже занят!');
+                        document.getElementById("id_username").setCustomValidity('Логин уже занят!');
+                    }
+                    else {
+                        document.getElementById("id_username").setAttribute('title', '');
+                        document.getElementById("id_username").setCustomValidity('');
+                    }
+                },
+                error: function(e)
+                {
+
+                }
+            });
+
+        });
+    </script>
+    <script>
+        $("#id_email").change(function () {
+            let data = { csrfmiddlewaretoken: '{{ csrf_token }}', email: $("#id_email").val() };
+            $.ajax
+            ({
+                type: "POST",
+                data: data,
+                url: '/accounts/signup/',
+                success:function(serverData)
+                {
+                    console.log(serverData['email_occupation']);
+                    if (serverData['email_occupation']) {
+                        document.getElementById("id_email").setAttribute('title', 'email уже занят!');
+                        document.getElementById("id_email").setCustomValidity('email уже занят!');
+                    }
+                    else {
+                        document.getElementById("id_email").setAttribute('title', '');
+                        document.getElementById("id_email").setCustomValidity('');
+                    }
+                },
+                error: function(e)
+                {
+
+                }
+            });
+
+        });
+    </script>
+     <script>
+        $("#id_password1").change(function () {
+            let data = { csrfmiddlewaretoken: '{{ csrf_token }}', password1: $("#id_password1").val() };
+            $.ajax
+            ({
+                type: "POST",
+                data: data,
+                url: '/accounts/signup/',
+                success:function(serverData)
+                {
+                    console.log(serverData['is_password_unsafe']);
+                    if (serverData['is_password_unsafe']) {
+                        document.getElementById("id_password1").setAttribute('title', 'Пароль слишком простой!');
+                        document.getElementById("id_password1").setCustomValidity('Пароль слишком простой!');
+                    }
+                    else {
+                        document.getElementById("id_password1").setAttribute('title', '');
+                        document.getElementById("id_password1").setCustomValidity('');
+                    }
+                },
+                error: function(e)
+                {
+
+                }
+            });
+
+        });
+    </script>
+    <script>
+        $("#id_password2").change(function () {
+            if ($("#id_password2").val() !== $("#id_password1").val()) {
+                document.getElementById("id_password2").setAttribute('title', 'Пароли не равны!');
+                document.getElementById("id_password2").setCustomValidity('Пароли не равны!');
+            }
+            else {
+                document.getElementById("id_password2").setAttribute('title', '');
+                document.getElementById("id_password2").setCustomValidity('');
+            }
+        });
+    </script>
+
+
+</div>
+{% include "footer.html" %}
+</body>
+</html>
+

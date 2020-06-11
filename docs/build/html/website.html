@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ru" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ru" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Website „Virtual Vadim“ &mdash; документация Virtual Vadim 1.0.0</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="2. Создания постов" href="posts.html" />
+    <link rel="prev" title="Добро пожаловать в документацию Virtual Vadim" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Virtual Vadim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Website „Virtual Vadim“</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-accounts.views">1.1. View-функции</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-accounts.models">1.2. Модели БД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-accounts.forms">1.3. Формы</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.4. Бот</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="posts.html">2. Создания постов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages.html">3. Создание сообщений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction_VK.html">4. Интеграция с Вконтакте</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Virtual Vadim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>Website „Virtual Vadim“</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/website.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="website-virtual-vadim">
+<h1><span class="section-number">1. </span>Website „Virtual Vadim“<a class="headerlink" href="#website-virtual-vadim" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="module-accounts.views">
+<span id="view"></span><h2><span class="section-number">1.1. </span>View-функции<a class="headerlink" href="#module-accounts.views" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py function">
+<dt id="accounts.views.activate">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">activate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">uidb64</span></em>, <em class="sig-param"><span class="n">token</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.activate" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Этот метод нужен для подтверждения адреса электронной почте. При переходе по ссылке из письма, адрес подтверждается.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – Запрос Django</p></li>
+<li><p><strong>uidb64</strong> – </p></li>
+<li><p><strong>token</strong> – токен, отправленный в письме</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>страница „Email подтверждён“ / HTTP 409 „Conflict“</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="accounts.views.all_bots">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">all_bots</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.all_bots" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавление нового бота</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> – Запрос Django</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="accounts.views.bot_activate_vk_posts">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">bot_activate_vk_posts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">pk</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.bot_activate_vk_posts" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция активации бота</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<em>str</em>) – Время запуска бота</p></li>
+<li><p><strong>pk</strong> (<em>int</em>) – ID бота</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="accounts.views.bot_deactivate_vk_posts">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">bot_deactivate_vk_posts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pk</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.bot_deactivate_vk_posts" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция деактивации бота</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>pk</strong> (<em>int</em>) – ID бота</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="accounts.views.bot_view">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">bot_view</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">pk</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.bot_view" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Информация о боте</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – Запрос Django</p></li>
+<li><p><strong>pk</strong> – ID бота</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="accounts.views.client_auth">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">client_auth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">login</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.client_auth" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверка подлиности логина и пароля от Вконтакте</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>login</strong> (<em>str</em>) – Логин пользователя Вконтакте</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Пароль пользователя Вконтакте</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="accounts.views.edit_bot">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">edit_bot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">bot_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.edit_bot" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Редактирования существующего бота.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – Запрос Django.</p></li>
+<li><p><strong>bot_id</strong> – ID редактируемого бота.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="accounts.views.lk">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">lk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.lk" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Личный кабинет</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – Запрос Django</p></li>
+<li><p><strong>user_id</strong> – ID пользователя</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="accounts.views.main">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.main" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Главная страница</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> – Запрос Django</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="accounts.views.signup">
+<code class="sig-prename descclassname">accounts.views.</code><code class="sig-name descname">signup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.views.signup" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница регистрации. Отправляет письмо на указанную почту со ссылкой для подтверждения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> – запрос Django</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-accounts.models">
+<span id="id1"></span><h2><span class="section-number">1.2. </span>Модели БД<a class="headerlink" href="#module-accounts.models" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="accounts.models.Bot">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.models.</code><code class="sig-name descname">Bot</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.models.Bot" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Модель бота. Твиттер добавлен только для того, чтобы было видно, что это работает</p>
+<dl class="py exception">
+<dt id="accounts.models.Bot.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#accounts.models.Bot.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt id="accounts.models.Bot.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#accounts.models.Bot.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-accounts.forms">
+<span id="id2"></span><h2><span class="section-number">1.3. </span>Формы<a class="headerlink" href="#module-accounts.forms" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="accounts.forms.BotSettings">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.forms.</code><code class="sig-name descname">BotSettings</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">files=None</em>, <em class="sig-param">auto_id='id_%s'</em>, <em class="sig-param">prefix=None</em>, <em class="sig-param">initial=None</em>, <em class="sig-param">error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em class="sig-param">label_suffix=None</em>, <em class="sig-param">empty_permitted=False</em>, <em class="sig-param">field_order=None</em>, <em class="sig-param">use_required_attribute=None</em>, <em class="sig-param">renderer=None</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.BotSettings" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма создания и редактирования бота</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="accounts.forms.SignUpForm">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.forms.</code><code class="sig-name descname">SignUpForm</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.SignUpForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма регистрации</p>
+<dl class="py class">
+<dt id="accounts.forms.SignUpForm.Meta">
+<em class="property">class </em><code class="sig-name descname">Meta</code><a class="headerlink" href="#accounts.forms.SignUpForm.Meta" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вспомогательный класс</p>
+<dl class="py attribute">
+<dt id="accounts.forms.SignUpForm.Meta.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#accounts.forms.SignUpForm.Meta.model" title="Ссылка на это определение">¶</a></dt>
+<dd><p>псевдоним класса <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.models.User</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="accounts.forms.SignUpForm.clean_email">
+<code class="sig-name descname">clean_email</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.SignUpForm.clean_email" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверка на свободность почты</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>почтовый адрес email</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="accounts.forms.SignUpForm.clean_password2">
+<code class="sig-name descname">clean_password2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.SignUpForm.clean_password2" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверка, что поля ввода для паролей совподают</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>пароль</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="accounts.forms.VkAccount">
+<em class="property">class </em><code class="sig-prename descclassname">accounts.forms.</code><code class="sig-name descname">VkAccount</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">files=None</em>, <em class="sig-param">auto_id='id_%s'</em>, <em class="sig-param">prefix=None</em>, <em class="sig-param">initial=None</em>, <em class="sig-param">error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em class="sig-param">label_suffix=None</em>, <em class="sig-param">empty_permitted=False</em>, <em class="sig-param">field_order=None</em>, <em class="sig-param">use_required_attribute=None</em>, <em class="sig-param">renderer=None</em><span class="sig-paren">)</span><a class="headerlink" href="#accounts.forms.VkAccount" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для ввода логина и пароля от аккаунта во Вконтакте</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">1.4. </span>Бот<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<ul class="simple">
+<li><p>Добавление друзей</p></li>
+</ul>
+<span class="target" id="module-add_friends"></span><dl class="py function">
+<dt id="add_friends.add_all_new_friends">
+<code class="sig-prename descclassname">add_friends.</code><code class="sig-name descname">add_all_new_friends</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bot_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#add_friends.add_all_new_friends" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Одобряет все запросы в друзья</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>bot_data</strong> (<em>list</em>) – данные бота</p>
+</dd>
+</dl>
+</dd></dl>
+
+<ul class="simple">
+<li><p>Управление друзей</p></li>
+</ul>
+<span class="target" id="module-friends_manager"></span><dl class="py function">
+<dt id="friends_manager.main">
+<code class="sig-prename descclassname">friends_manager.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_name</span><span class="o">=</span><span class="default_value">'accounts_bot'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#friends_manager.main" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Запускает add_friends.add_all_new_friends() для каждого бота в отдельном потоке</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>table_name</strong> (<em>str</em>) – Имя таблицы с ботами в БД</p>
+</dd>
+</dl>
+</dd></dl>
+
+<ul class="simple">
+<li><p>Взаимодействие с БД</p></li>
+</ul>
+<span class="target" id="module-interaction_with_db"></span><dl class="py function">
+<dt id="interaction_with_db.get_bot_data">
+<code class="sig-prename descclassname">interaction_with_db.</code><code class="sig-name descname">get_bot_data</code><span class="sig-paren">(</span><em class="sig-param">cur=&lt;pymysql.cursors.DictCursor object&gt;</em>, <em class="sig-param">id_bot=None</em>, <em class="sig-param">table_name='accounts_bot'</em><span class="sig-paren">)</span><a class="headerlink" href="#interaction_with_db.get_bot_data" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает id, login, password, age, gender, active_posts, active_messages, active_friends для бота из БД</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cur</strong> – Курсор БД</p></li>
+<li><p><strong>id_bot</strong> (<em>int</em>) – id бота</p></li>
+<li><p><strong>table_name</strong> (<em>str</em>) – Имя таблицы с ботами в БД</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<ul class="simple">
+<li><p>Логирование</p></li>
+</ul>
+<span class="target" id="module-logger"></span><dl class="py class">
+<dt id="logger.Logger">
+<em class="property">class </em><code class="sig-prename descclassname">logger.</code><code class="sig-name descname">Logger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_path</span><span class="o">=</span><span class="default_value">'~/virtual-person/website/bot/logs'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#logger.Logger" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Сохраняет сообщение(лог) в определенный файл</p>
+<dl class="py method">
+<dt id="logger.Logger.save_log">
+<code class="sig-name descname">save_log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log_message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#logger.Logger.save_log" title="Ссылка на это определение">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>log_message</strong> (<em>str</em>) – Содержимое лога</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="logger.get_save_path">
+<code class="sig-prename descclassname">logger.</code><code class="sig-name descname">get_save_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bot_data</span></em>, <em class="sig-param"><span class="n">type_log</span></em><span class="sig-paren">)</span><a class="headerlink" href="#logger.get_save_path" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает персональный путь для сохранения логов для каждого бота</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p>Управление сообщениями</p></li>
+</ul>
+<span class="target" id="module-message_manager"></span><dl class="py function">
+<dt id="message_manager.main">
+<code class="sig-prename descclassname">message_manager.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_name</span><span class="o">=</span><span class="default_value">'accounts_bot'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_manager.main" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Запускает message_to_vk.message() для каждого бота в отдельном потоке</p>
+</dd></dl>
+
+<ul class="simple">
+<li><p>Отправка сообщений</p></li>
+</ul>
+<span class="target" id="module-message_to_vk"></span><dl class="py function">
+<dt id="message_to_vk.get_reply">
+<code class="sig-prename descclassname">message_to_vk.</code><code class="sig-name descname">get_reply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">question</span></em>, <em class="sig-param"><span class="n">port</span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_to_vk.get_reply" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отдает и принимает данные для опередленного сокета</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>question</strong> (<em>str</em>) – Отдаваемые данные</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – Порт сокета</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="message_to_vk.message">
+<code class="sig-prename descclassname">message_to_vk.</code><code class="sig-name descname">message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bot_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#message_to_vk.message" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отвечает на сообщения в непрочитанных диалогах. В диалоге отвечает на последнее сообщение.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>bot_data</strong> (<em>list</em>) – данные бота</p>
+</dd>
+</dl>
+</dd></dl>
+
+<ul class="simple">
+<li><p>Публикация постов</p></li>
+</ul>
+<span class="target" id="module-posts_to_vk"></span><dl class="py function">
+<dt id="posts_to_vk.post">
+<code class="sig-prename descclassname">posts_to_vk.</code><code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_sent</span></em>, <em class="sig-param"><span class="n">bot_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#posts_to_vk.post" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вызывает генератор постов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size_sent</strong> (<em>int</em>) – Количесвто предложений в посте</p></li>
+<li><p><strong>bot_data</strong> (<em>list</em>) – данные бота</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<ul class="simple">
+<li><p>Граммотность</p></li>
+</ul>
+<span class="target" id="module-orthography"></span><dl class="py function">
+<dt id="orthography.capital">
+<code class="sig-prename descclassname">orthography.</code><code class="sig-name descname">capital</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#orthography.capital" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает группы, написанные заглавными буквами</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>string</strong> – str - Строка для обработки</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>str - Строка, где группы, написанные заглавными буквами</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="orthography.orthography">
+<code class="sig-prename descclassname">orthography.</code><code class="sig-name descname">orthography</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#orthography.orthography" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Убирает пробелы перед знаками препинания и делает буквы после знаков препинания заглавными</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>string</strong> – str - Строка для обработки</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>str - Строка с правильной пунктуацией</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="posts.html" class="btn btn-neutral float-right" title="2. Создания постов" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Добро пожаловать в документацию Virtual Vadim" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Team Vadim
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

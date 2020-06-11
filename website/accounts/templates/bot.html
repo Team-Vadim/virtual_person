@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Бот {% endblock %}
+
+
+{% block style %}
+    <canvas id="canvas" data-image="https://pngimage.net/wp-content/uploads/2018/06/человек-png-иконка-8.png"></canvas>
+{% endblock %}
+
+
+{% block content %}
+    <div class="intro" style="transform: translate(-50%, -50%); ">
+    <button onclick="history.back();">НАЗАД</button>
+        <button onclick="location.href='/edit/{{ bot.id }}'">ИЗМЕНИТЬ</button>
+        <button onclick="delete_bot()">УДАЛИТЬ</button>
+
+       <!-- <table class="bot-table">
+            <tr>
+                <th>Возраст:</th>
+                <th>{{ bot.age }}</th>
+            </tr>
+            <tr>
+                <th>Социальная сеть:</th>
+                <th>{{ bot.social_network }}</th>
+            </tr>
+            <tr>
+                <th>Логин: </th>
+                <th>{{ bot.login }}</th>
+            </tr>
+            <tr>
+                <th>Пароль:</th>
+                <th>{{ hidden_pass }}</th>
+            </tr>
+        </table> --> <!--через таблицу вывод может быть удобнее, но это пока спорно -->
+
+        <br><br><br>
+        Имя бота: {{ bot.name }}<br><br>
+        Виртуальный возраст бота: {{ bot.age }}<br><br>
+        Пол: {{ bot.gender }}<br><br>
+        Социальная сеть: {{ bot.social_network }}<br><br>
+        Делать посты раз в: {{ bot.time }}<br><br>
+        Логин пользователя: {{ bot.login }}<br><br>
+        Пароль пользователя: {{ hidden_pass }}<br><br>
+        Отвечать на сообщения: {{ bot.active_messages }}<br><br>
+        Писать посты: {{ bot.active_posts }}<br><br>
+        Принимать в друзья: {{ bot.active_friends }}<br><br><br>
+
+    </div>
+    {% include "footer.html" %}
+
+{% endblock %}
+
+
+{% block script %}
+    <script src="/static/js/base-js.js"></script>
+
+    <script>
+        function delete_bot(){
+            $.ajax({
+                headers: { "X-CSRFToken": '{{ csrf_token }}' },
+                method: 'DELETE',
+                url: '/bot/{{ bot.id }}',
+                success: function(answer) {
+                    window.location.href = '/accounts/{{ user_id }}';
+                }
+            });
+        }
+    </script>
+{% endblock %}
+

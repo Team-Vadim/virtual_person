@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% load static %}<link rel="shortcut icon" type="image/x-icon" href="{% static '/img/favicon.ico'%}">
+    <title>{% block title %} Virtual Person {% endblock %}</title>
+
+    {% block static %}
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base-css.css' %}">
+        <link rel="shortcut icon" href="{%  static '/img/favicon.ico' %}" type="image/x-icon">
+    {% endblock %}
+</head>
+
+<body>
+    {% block style %}
+        <canvas id="canvas" data-image="https://pngimage.net/wp-content/uploads/2018/06/человек-png-иконка-8.png"></canvas>
+    {% endblock %}
+
+    {% block script %}
+    {% endblock %}
+
+    <header>
+        {%  block header %}
+        {%  endblock %}
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
+

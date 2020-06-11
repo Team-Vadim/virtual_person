@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ru" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ru" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Интеграция с Вконтакте &mdash; документация Virtual Vadim 1.0.0</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="prev" title="3. Создание сообщений" href="messages.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Virtual Vadim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="website.html">1. Website „Virtual Vadim“</a></li>
+<li class="toctree-l1"><a class="reference internal" href="posts.html">2. Создания постов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages.html">3. Создание сообщений</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Интеграция с Вконтакте</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Virtual Vadim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li><span class="section-number">4. </span>Интеграция с Вконтакте</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/interaction_VK.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-methods">
+<span id="id1"></span><h1><span class="section-number">4. </span>Интеграция с Вконтакте<a class="headerlink" href="#module-methods" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Методы для работы с vk</p>
+<dl class="py class">
+<dt id="methods.Friends">
+<em class="property">class </em><code class="sig-prename descclassname">methods.</code><code class="sig-name descname">Friends</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">login</span><span class="o">=</span><span class="default_value">'+375333920371'</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">'proms_vadim_password_103'</span></em>, <em class="sig-param"><span class="n">have_two_factor_authentication</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.Friends" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс для обработки заявок в друзья пользователя</p>
+<dl class="py method">
+<dt id="methods.Friends.add_all_new_friends">
+<code class="sig-name descname">add_all_new_friends</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#methods.Friends.add_all_new_friends" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод одобрающий все заявки в друзья</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="methods.Friends.add_friend">
+<code class="sig-name descname">add_friend</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.Friends.add_friend" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод добавляющий конкретного пользователя</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>user_id</strong> (<em>int</em>) – ID добавляемого человека</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="methods.Friends.get_new_friends_list">
+<code class="sig-name descname">get_new_friends_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#methods.Friends.get_new_friends_list" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод получающий список всех заявок в друзья пользователя</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>Список ID пользователей</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="methods.Group">
+<em class="property">class </em><code class="sig-prename descclassname">methods.</code><code class="sig-name descname">Group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group_id</span></em>, <em class="sig-param"><span class="n">login</span><span class="o">=</span><span class="default_value">'+375333920371'</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">'proms_vadim_password_103'</span></em>, <em class="sig-param"><span class="n">have_two_factor_authentication</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.Group" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс для работы с сообществом вк</p>
+<dl class="py method">
+<dt id="methods.Group.create_post">
+<code class="sig-name descname">create_post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.Group.create_post" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Публикация поста на стену сообщества</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) – Сообщение на стену сообщества</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="methods.Group.get_messages">
+<code class="sig-name descname">get_messages</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em>, <em class="sig-param"><span class="n">count</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.Group.get_messages" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение сообщений</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> (<em>int</em>) – ID переписки</p></li>
+<li><p><strong>count</strong> (<em>int</em>) – Получаемое количество сообщение</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список сообщений</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="methods.Group.get_new_messages">
+<code class="sig-name descname">get_new_messages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#methods.Group.get_new_messages" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение новых сообщений</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>Список сообщений</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="methods.Group.get_unread_dialogs">
+<code class="sig-name descname">get_unread_dialogs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">count</span><span class="o">=</span><span class="default_value">200</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.Group.get_unread_dialogs" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение непрочитанных сообщение от сообществ</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>count</strong> (<em>int</em>) – Количество диалогов</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Возвращает список вот таких словарей {«id»: id, «count»: количество неспрочитанных сообщений}</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="methods.Group.send_message">
+<code class="sig-name descname">send_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em>, <em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.Group.send_message" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отправка сообщений сообществу</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> (<em>int</em>) – ID получателя сообщения</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Сообщение</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.auth_code">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">auth_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#methods.auth_code" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция для обработки двухфакторной аутентификации</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>Код для двухфакторной аутентификации</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>tuple(str, bool)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.client_auth">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">client_auth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">login</span><span class="o">=</span><span class="default_value">'+375333920371'</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">'proms_vadim_password_103'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.client_auth" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Авторизация</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>login</strong> (<em>str</em>) – Логин от аккаунта во Вконтакте</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Пароль от аккаунта во Вконтакте</p></li>
+</ul>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>class VkApiMethod</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.create_post">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">create_post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">login</span><span class="o">=</span><span class="default_value">'+375333920371'</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">'proms_vadim_password_103'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.create_post" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Публикация поста на стену во Вконтакте</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – Текст поста</p></li>
+<li><p><strong>login</strong> (<em>str</em>) – Логин пользователя во Вконтакте</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Пароль пользователя во Вконтакте</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список ID непрочитаных диалогов</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.download_users_json">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">download_users_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">users_json</span></em>, <em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.download_users_json" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обработка списка пользователей</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>users_json</strong> (<em>list</em>) – </p></li>
+<li><p><strong>path</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.get_big_wall">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">get_big_wall</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vk_session</span></em>, <em class="sig-param"><span class="n">user_id</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.get_big_wall" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод для скачивания стены во Вконтакте</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vk_session</strong> (<em>class VkApi</em>) – Передаём авторизованную сессию VkApi</p></li>
+<li><p><strong>user_id</strong> (<em>int</em>) – Передаём ID пользователя, чью стенку надо получить</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Возвращается стена пользователя. Записи - „items“, кол-во - „count“</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.get_messages">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">get_messages</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">count</span></em>, <em class="sig-param"><span class="n">user_id</span></em>, <em class="sig-param"><span class="n">login</span><span class="o">=</span><span class="default_value">'+375333920371'</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">'proms_vadim_password_103'</span></em>, <em class="sig-param"><span class="n">have_two_factor_authentication</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.get_messages" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция для получения новых сообщений из вк</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>count</strong> (<em>int</em>) – Количество сообщений выгружаемых из диалога</p></li>
+<li><p><strong>user_id</strong> (<em>int</em>) – ID пользователя получателя во Вконтакте</p></li>
+<li><p><strong>login</strong> (<em>str</em>) – Логин пользователя отправителя во Вконтакте</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Пароль пользователя отправителя во Вконтакте</p></li>
+<li><p><strong>have_two_factor_authentication</strong> (<em>bool</em>) – Есть ли двухфакторная ауетефикация</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список сообщений</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.get_new_messages">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">get_new_messages</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">login</span><span class="o">=</span><span class="default_value">'+375333920371'</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">'proms_vadim_password_103'</span></em>, <em class="sig-param"><span class="n">have_two_factor_authentication</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.get_new_messages" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение новых сообщений</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>login</strong> (<em>str</em>) – Логин пользователя во Вконтакте</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Пароль пользователя во Вконтакте</p></li>
+<li><p><strong>have_two_factor_authentication</strong> (<em>bool</em>) – Есть ли двухфакторная аутентификация</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список новых сообщение</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.get_unread_dialogs">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">get_unread_dialogs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">count</span><span class="o">=</span><span class="default_value">200</span></em>, <em class="sig-param"><span class="n">login</span><span class="o">=</span><span class="default_value">'+375333920371'</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">'proms_vadim_password_103'</span></em>, <em class="sig-param"><span class="n">have_two_factor_authentication</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.get_unread_dialogs" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение ID непрочитаных диалогов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>count</strong> (<em>inr</em>) – Количесво получаемых диалогов</p></li>
+<li><p><strong>login</strong> (<em>str</em>) – Логин пользователя во Вконтакте</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Пароль пользователя во Вконтакте</p></li>
+<li><p><strong>have_two_factor_authentication</strong> (<em>bool</em>) – Есть ли двухфакторная аутентификация</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список ID непрочитаных диалогов</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.get_users_list">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">get_users_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vk_session</span></em>, <em class="sig-param"><span class="n">vk_q</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">sex</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">age_from</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">age_to</span><span class="o">=</span><span class="default_value">99</span></em>, <em class="sig-param"><span class="n">country</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">has_photo</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">100000</span></em>, <em class="sig-param"><span class="n">max_count</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.get_users_list" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод для получения списка пользователей со схожими параметрами</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vk_session</strong> (<em>class VkApi</em>) – Передаём авторизованную сессию VkApi</p></li>
+<li><p><strong>vk_q</strong> (<em>str</em>) – </p></li>
+<li><p><strong>sex</strong> (<em>int</em>) – Пол человека. 0 - неважно, 1 -  Женщина, 2 - Мужской</p></li>
+<li><p><strong>age_from</strong> (<em>int</em>) – Начало диапазона просматриваемого возраста</p></li>
+<li><p><strong>age_to</strong> (<em>int</em>) – Конец диапазона просматриваемого возраста</p></li>
+<li><p><strong>country</strong> (<em>int</em>) – </p></li>
+<li><p><strong>has_photo</strong> (<em>int</em>) – </p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – </p></li>
+<li><p><strong>max_count</strong> (<em>int</em>) – Максимальное количесво получаемых пользователей</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Возвращается список словарей {„id“:id, „sex“: sex, „age“:age}</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.get_users_name">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">get_users_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">login</span><span class="o">=</span><span class="default_value">'+375333920371'</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">'proms_vadim_password_103'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.get_users_name" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение информации пользователя во Вконтакте</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>login</strong> (<em>str</em>) – Логин пользователя во Вконтакте</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Пароль пользователя во Вконтакте</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Возвращает вот такой список [{„uid“: id пользователя, „first_name“: имя, „second_name“: фамилия, „bdate“: дата рождения}]</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.parse_messages">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">parse_messages</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">history</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.parse_messages" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Преобразование словоря сообщений в список</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>history</strong> – Словарь сообщений вк</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список сообщений</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="methods.send_message">
+<code class="sig-prename descclassname">methods.</code><code class="sig-name descname">send_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">user_id</span></em>, <em class="sig-param"><span class="n">login</span><span class="o">=</span><span class="default_value">'+375333920371'</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">'proms_vadim_password_103'</span></em>, <em class="sig-param"><span class="n">have_two_factor_authentication</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#methods.send_message" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция для отправки сообщения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>) – Сообщение</p></li>
+<li><p><strong>user_id</strong> (<em>int</em>) – ID пользователя получателя во Вконтакте</p></li>
+<li><p><strong>login</strong> (<em>str</em>) – Логин пользователя отправителя во Вконтакте</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Пароль пользователя отправителя во Вконтакте</p></li>
+<li><p><strong>have_two_factor_authentication</strong> (<em>bool</em>) – Есть ли двухфакторная ауетефикация</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="messages.html" class="btn btn-neutral float-left" title="3. Создание сообщений" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Team Vadim
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

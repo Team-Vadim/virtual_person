@@ -1,0 +1,4 @@
+pylint==2.4.4
+anybadge==1.7.0
+pycodestyle==2.5.0
+coverage==5.1

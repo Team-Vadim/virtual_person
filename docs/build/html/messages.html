@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ru" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ru" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Создание сообщений &mdash; документация Virtual Vadim 1.0.0</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="4. Интеграция с Вконтакте" href="interaction_VK.html" />
+    <link rel="prev" title="2. Создания постов" href="posts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Virtual Vadim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="website.html">1. Website „Virtual Vadim“</a></li>
+<li class="toctree-l1"><a class="reference internal" href="posts.html">2. Создания постов</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Создание сообщений</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. Подключение к БД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-error_correction">3.2. Испраление граммотности</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-generate_response">3.3. Генерация ответов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-histograms">3.4. Класс распределения элементов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-markov_sentence_generator">3.5. Генерация сообщений с помощью цепей Маркова</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sentences">3.6. Обработка сообщений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sentiment_recognition">3.7. Определение эмоционального окраса</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-syntax_characteristics">3.8. Определение синтаксиса предложения</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interaction_VK.html">4. Интеграция с Вконтакте</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Virtual Vadim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li><span class="section-number">3. </span>Создание сообщений</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/messages.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">3. </span>Создание сообщений<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">3.1. </span>Подключение к БД<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="database_interaction.DbModelInteraction">
+<em class="property">class </em><code class="sig-prename descclassname">database_interaction.</code><code class="sig-name descname">DbModelInteraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_interaction.DbModelInteraction" title="Ссылка на это определение">¶</a></dt>
+<dd><dl class="py method">
+<dt id="database_interaction.DbModelInteraction.extract_data">
+<code class="sig-name descname">extract_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_interaction.DbModelInteraction.extract_data" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Чтение модели из базы данных. Работает с последней записанной моделью</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>последняя записанная в БД модель</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database_interaction.DbModelInteraction.insert_data">
+<code class="sig-name descname">insert_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_interaction.DbModelInteraction.insert_data" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Запись модели в базу данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>dict</em>) – модель для записи</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-error_correction">
+<span id="id3"></span><h2><span class="section-number">3.2. </span>Испраление граммотности<a class="headerlink" href="#module-error_correction" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py function">
+<dt id="error_correction.capital">
+<code class="sig-prename descclassname">error_correction.</code><code class="sig-name descname">capital</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#error_correction.capital" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает группы, написанные заглавными буквами</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – Строка для обработки</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Строка, где группы, написанные заглавными буквами</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="error_correction.correct_spelling">
+<code class="sig-prename descclassname">error_correction.</code><code class="sig-name descname">correct_spelling</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em>, <em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">518</span></em><span class="sig-paren">)</span><a class="headerlink" href="#error_correction.correct_spelling" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Текст с ошибками (без ошибок)
+Подробное апи можно найти тут: <a class="reference external" href="https://yandex.ru/dev/speller/doc/dg/concepts/About-docpage/">https://yandex.ru/dev/speller/doc/dg/concepts/About-docpage/</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>str</em>) – Входной текст</p></li>
+<li><p><strong>options</strong> (<em>int</em>) – настройки для спеллера
+в переменную записывается сумма нужных значений:
+IGNORE_DIGITS           2       Пропускать слова с цифрами, например, «авп17х4534».
+IGNORE_URLS                 4   Пропускать интернет-адреса, почтовые адреса и имена файлов.
+FIND_REPEAT_WORDS           8   Подсвечивать повторы слов, идущие подряд. Например, «я полетел на на Кипр».
+IGNORE_CAPITALIZATION   512 Игнорировать неверное употребление ПРОПИСНЫХ/строчных букв, например, в слове «москва»</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Исправленный текст</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="error_correction.orthography">
+<code class="sig-prename descclassname">error_correction.</code><code class="sig-name descname">orthography</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#error_correction.orthography" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Убирает пробелы перед знаками препинания и делает буквы после знаков препинания заглавными</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – Строка для обработки</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Строка с правильной пунктуацией</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-generate_response">
+<span id="id4"></span><h2><span class="section-number">3.3. </span>Генерация ответов<a class="headerlink" href="#module-generate_response" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py function">
+<dt id="generate_response.analize_message">
+<code class="sig-prename descclassname">generate_response.</code><code class="sig-name descname">analize_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chars</span></em>, <em class="sig-param"><span class="n">words</span></em><span class="sig-paren">)</span><a class="headerlink" href="#generate_response.analize_message" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Анализ сообщения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chars</strong> (<em>list</em>) – Список характеристик</p></li>
+<li><p><strong>words</strong> (<em>list</em>) – Список слов</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Начальное слово и список добавленных слов</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>tuple(str, list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="generate_response.get_data_for_answer">
+<code class="sig-prename descclassname">generate_response.</code><code class="sig-name descname">get_data_for_answer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">words</span></em><span class="sig-paren">)</span><a class="headerlink" href="#generate_response.get_data_for_answer" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение информации из сообщения для ответа</p>
+<p>:param words:Список слов
+:type words: list
+:return: Начальное слово и список добавленных слов
+:rtype: tuple(str, list)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="generate_response.get_data_for_narrative">
+<code class="sig-prename descclassname">generate_response.</code><code class="sig-name descname">get_data_for_narrative</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">words</span></em><span class="sig-paren">)</span><a class="headerlink" href="#generate_response.get_data_for_narrative" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение информации из сообщения для повествования</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>words</strong> (<em>list</em>) – Список слов</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Начальное слово и список добавленных слов</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>tuple(str, list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="generate_response.get_message">
+<code class="sig-prename descclassname">generate_response.</code><code class="sig-name descname">get_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#generate_response.get_message" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение сообщений</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) – Сообщение</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список характеристик и список слов</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>tuple(list, list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="generate_response.main">
+<code class="sig-prename descclassname">generate_response.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generate_response.main" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция main</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="generate_response.parce_input">
+<code class="sig-prename descclassname">generate_response.</code><code class="sig-name descname">parce_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generate_response.parce_input" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Чтение копуса сообщений</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>Корпус сообщений</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-histograms">
+<span id="id5"></span><h2><span class="section-number">3.4. </span>Класс распределения элементов<a class="headerlink" href="#module-histograms" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="histograms.Dictogram">
+<em class="property">class </em><code class="sig-prename descclassname">histograms.</code><code class="sig-name descname">Dictogram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#histograms.Dictogram" title="Ссылка на это определение">¶</a></dt>
+<dd><dl class="py method">
+<dt id="histograms.Dictogram.check_substring">
+<code class="sig-name descname">check_substring</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">main_str</span></em>, <em class="sig-param"><span class="n">checked_str</span></em>, <em class="sig-param"><span class="n">window_size</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#histograms.Dictogram.check_substring" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверка подстроки</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>main_str</strong> (<em>str</em>) – Главная строка</p></li>
+<li><p><strong>checked_str</strong> (<em>str</em>) – Строка, которую надо проверить в главной</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – Ширина окна</p></li>
+</ul>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="histograms.Dictogram.count">
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span></em><span class="sig-paren">)</span><a class="headerlink" href="#histograms.Dictogram.count" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращаем значение счетчика элемента, или 0</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>item</strong> – значение</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>значение счетчика</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="histograms.Dictogram.return_random_word">
+<code class="sig-name descname">return_random_word</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#histograms.Dictogram.return_random_word" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вернуть случайное слово</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>случайное слово</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="histograms.Dictogram.return_weighted_random_word">
+<code class="sig-name descname">return_weighted_random_word</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">added_word</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">priority</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#histograms.Dictogram.return_weighted_random_word" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерация псевдослучайного числа из диапозона от 0 до n-1, где n - общее число слов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>added_word</strong> (<em>str</em>) – Добавленное слова</p></li>
+<li><p><strong>priority</strong> – Нужен ли приоритет</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список из числа и его статутса</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="histograms.Dictogram.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em><span class="sig-paren">)</span><a class="headerlink" href="#histograms.Dictogram.update" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обновляем распределение элементами из имеющегося итерируемого набора данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>iterable</strong> – optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-markov_sentence_generator">
+<span id="id6"></span><h2><span class="section-number">3.5. </span>Генерация сообщений с помощью цепей Маркова<a class="headerlink" href="#module-markov_sentence_generator" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="markov_sentence_generator.MarkovModel">
+<em class="property">class </em><code class="sig-prename descclassname">markov_sentence_generator.</code><code class="sig-name descname">MarkovModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.MarkovModel" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Модель цепи Маркова</p>
+<dl class="py method">
+<dt id="markov_sentence_generator.MarkovModel.make_markov_model">
+<code class="sig-name descname">make_markov_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.MarkovModel.make_markov_model" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Создание модели</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<em>int</em>) – </p></li>
+<li><p><strong>data</strong> (<em>list</em>) – Корпус</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Марковская модель</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="markov_sentence_generator.SentenceGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">markov_sentence_generator.</code><code class="sig-name descname">SentenceGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс генератора сообщений</p>
+<dl class="py method">
+<dt id="markov_sentence_generator.SentenceGenerator.check_substring">
+<code class="sig-name descname">check_substring</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">main_str</span></em>, <em class="sig-param"><span class="n">checked_str</span></em>, <em class="sig-param"><span class="n">window_size</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator.check_substring" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверка подстроки</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>main_str</strong> (<em>str</em>) – Главная строка</p></li>
+<li><p><strong>checked_str</strong> (<em>str</em>) – Cтрока, которую надо проверить в главной</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – Ширина окна</p></li>
+</ul>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_sentence_generator.SentenceGenerator.generate_better_start_part">
+<code class="sig-name descname">generate_better_start_part</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">markov_model</span></em>, <em class="sig-param"><span class="n">start_w</span></em>, <em class="sig-param"><span class="n">added_word</span></em>, <em class="sig-param"><span class="n">previous_end</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator.generate_better_start_part" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерация улучшенное начальной части</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<em>int</em>) – </p></li>
+<li><p><strong>markov_model</strong> (<em>dict</em>) – Марковская модель</p></li>
+<li><p><strong>start_w</strong> (<em>str</em>) – Стартовое слово</p></li>
+<li><p><strong>added_word</strong> (<em>str</em>) – Добавленное слово</p></li>
+<li><p><strong>previous_end</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_sentence_generator.SentenceGenerator.generate_random_sentence">
+<code class="sig-name descname">generate_random_sentence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">start_word</span></em>, <em class="sig-param"><span class="n">ending</span></em>, <em class="sig-param"><span class="n">added_words</span></em>, <em class="sig-param"><span class="n">previous_end</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator.generate_random_sentence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерация рандомного предложения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<em>int</em>) – </p></li>
+<li><p><strong>length</strong> (<em>int</em>) – Длина предложения</p></li>
+<li><p><strong>start_word</strong> (<em>str</em>) – Первое слово</p></li>
+<li><p><strong>ending</strong> (<em>str</em>) – Последнее слово</p></li>
+<li><p><strong>added_words</strong> (<em>list</em>) – Список добавленных слов</p></li>
+<li><p><strong>previous_end</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список частей предложения</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_sentence_generator.SentenceGenerator.generate_start_part">
+<code class="sig-name descname">generate_start_part</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">markov_model</span></em>, <em class="sig-param"><span class="n">start_word</span></em>, <em class="sig-param"><span class="n">added_word</span></em>, <em class="sig-param"><span class="n">previous_sent</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator.generate_start_part" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерация начальной части</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<em>int</em>) – </p></li>
+<li><p><strong>markov_model</strong> (<em>dict</em>) – Марковская модель</p></li>
+<li><p><strong>start_word</strong> (<em>str</em>) – Стартовое слово</p></li>
+<li><p><strong>added_word</strong> (<em>str</em>) – Добавленное слово</p></li>
+<li><p><strong>previous_sent</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_sentence_generator.SentenceGenerator.make_appended_part">
+<code class="sig-name descname">make_appended_part</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">current_part</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator.make_appended_part" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Создание добавочной части</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<em>int</em>) – </p></li>
+<li><p><strong>current_part</strong> (<em>list</em>) – Текущая часть</p></li>
+</ul>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_sentence_generator.SentenceGenerator.make_final_part">
+<code class="sig-name descname">make_final_part</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">markov_model</span></em>, <em class="sig-param"><span class="n">first_word</span></em>, <em class="sig-param"><span class="n">ending</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator.make_final_part" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Создание следующей части</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<em>int</em>) – </p></li>
+<li><p><strong>markov_model</strong> (<em>dict</em>) – Марковская модель</p></li>
+<li><p><strong>first_word</strong> – Первое слово</p></li>
+<li><p><strong>ending</strong> (<em>str</em>) – Последнее слово</p></li>
+</ul>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_sentence_generator.SentenceGenerator.make_next_part">
+<code class="sig-name descname">make_next_part</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">old_window</span></em>, <em class="sig-param"><span class="n">next_word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator.make_next_part" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Создание следующей части</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<em>int</em>) – </p></li>
+<li><p><strong>old_window</strong> (<em>int</em>) – Старое окно</p></li>
+<li><p><strong>next_word</strong> (<em>str</em>) – Следующее слово</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список новых окон</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_sentence_generator.SentenceGenerator.print">
+<code class="sig-name descname">print</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">sentence</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator.print" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возврат предложения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<em>int</em>) – </p></li>
+<li><p><strong>sentence</strong> (<em>list</em>) – Список частей предложения</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Список слов в предложении</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_sentence_generator.SentenceGenerator.update_markov_models">
+<code class="sig-name descname">update_markov_models</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.SentenceGenerator.update_markov_models" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Замена старых марковских моделей на обновлённые.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>new_data</strong> (<em>list</em>) – Новый корпус</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="markov_sentence_generator.parce_input">
+<code class="sig-prename descclassname">markov_sentence_generator.</code><code class="sig-name descname">parce_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#markov_sentence_generator.parce_input" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обработка корпуса</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>Корпус</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sentences">
+<span id="id7"></span><h2><span class="section-number">3.6. </span>Обработка сообщений<a class="headerlink" href="#module-sentences" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="sentences.Message">
+<em class="property">class </em><code class="sig-prename descclassname">sentences.</code><code class="sig-name descname">Message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sentences.Message" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Объект сообщения для получения связи слов</p>
+<dl class="py method">
+<dt id="sentences.Message.delete_punctuation">
+<code class="sig-name descname">delete_punctuation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sentences.Message.delete_punctuation" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Удаление пунктуации, союзов, предлогов</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sentences.Message.find_sentences_structure">
+<code class="sig-name descname">find_sentences_structure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sentences.Message.find_sentences_structure" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Структура предложения из syntax_characteristics.py</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sentences.Message.get_relation">
+<code class="sig-name descname">get_relation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sentences.Message.get_relation" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Определение зависимостей слов по id их &lt;родителей&gt; (тех, от кого они зависят)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sentences.Message.get_result">
+<code class="sig-name descname">get_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sentences.Message.get_result" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращяется распарсенный текст</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+<ol class="arabic">
+<li><p>Эмоциональный окрас сообщения</p></li>
+<li><dl>
+<dt>Если в сообщении 1 предложение, то возвращается список из типа предложения и списка зависимостей слов</dt><dd><blockquote>
+<div><dl class="simple">
+<dt>-&gt; Словарь с текущим словом, с ключами «word» (само слово) и «role» - функция в предложении</dt><dd><p>-&gt; Подлежащее обозначается как «nsubj»</p>
+</dd>
+</dl>
+<p>-&gt; Если есть, слова, зависящие от данного слова</p>
+</div></blockquote>
+<p>Если в предложении более 1 предложения, возвращается такой список для последнего</p>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sentences.Message.parse_into_sentences">
+<code class="sig-name descname">parse_into_sentences</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sentences.Message.parse_into_sentences" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Разбиение текста на предложения. Замены с частицой не. Определение типов предложений</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sentences.Message.recognize_sentiment">
+<code class="sig-name descname">recognize_sentiment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sentences.Message.recognize_sentiment" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Эмоциональный окрас сообщения будет определен с точностью до таких категорий:
+1) positive
+2) negative
+3) neutral
+4) speech
+5) skip - невозможно определить окрас из-за отсутствия контекста</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="sentences.get_message_attributes">
+<code class="sig-prename descclassname">sentences.</code><code class="sig-name descname">get_message_attributes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sentences.get_message_attributes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение аттрибутов сообщения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>Список характиристик и список слов</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>tuple(list, list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sentences.get_reply">
+<code class="sig-prename descclassname">sentences.</code><code class="sig-name descname">get_reply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">question</span></em>, <em class="sig-param"><span class="n">port</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sentences.get_reply" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение ответа</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>question</strong> (<em>str</em>) – Вопрос</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – Порт генератора</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Ответ</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sentiment_recognition">
+<span id="id8"></span><h2><span class="section-number">3.7. </span>Определение эмоционального окраса<a class="headerlink" href="#module-sentiment_recognition" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="sentiment_recognition.SentimentModel">
+<em class="property">class </em><code class="sig-prename descclassname">sentiment_recognition.</code><code class="sig-name descname">SentimentModel</code><a class="headerlink" href="#sentiment_recognition.SentimentModel" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Модель для определения эмоционального окраса предложения. Основана на модели deeppavlov rusentiment
+(см <a class="reference external" href="https://docs.deeppavlov.ai/en/0.1.6/components/classifiers.html">https://docs.deeppavlov.ai/en/0.1.6/components/classifiers.html</a>)</p>
+<dl class="py method">
+<dt id="sentiment_recognition.SentimentModel.get_sentiment">
+<code class="sig-name descname">get_sentiment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argument</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sentiment_recognition.SentimentModel.get_sentiment" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает настроение входного предложения (текста)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>argument</strong> (<em>str</em>) – Предложение (текст)</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Настроение</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-syntax_characteristics">
+<span id="id9"></span><h2><span class="section-number">3.8. </span>Определение синтаксиса предложения<a class="headerlink" href="#module-syntax_characteristics" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="syntax_characteristics.SyntaxModel">
+<em class="property">class </em><code class="sig-prename descclassname">syntax_characteristics.</code><code class="sig-name descname">SyntaxModel</code><a class="headerlink" href="#syntax_characteristics.SyntaxModel" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Модель для определения синтаксических связей. Основана на модели deeppavlov syntagrus model
+(см <a class="reference external" href="http://docs.deeppavlov.ai/en/master/features/models/syntaxparser.html">http://docs.deeppavlov.ai/en/master/features/models/syntaxparser.html</a>)</p>
+<dl class="py method">
+<dt id="syntax_characteristics.SyntaxModel.get_structure">
+<code class="sig-name descname">get_structure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sentence</span></em><span class="sig-paren">)</span><a class="headerlink" href="#syntax_characteristics.SyntaxModel.get_structure" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает массив зависимостей в предложении. Для каждого слова хранятся:
+-&gt;Порядковый номер (id)
+-&gt; Само слово
+-&gt; То, от чего это слово зависит (id &lt;родителя&gt;)        -&gt; Роль в предложении</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>sentence</strong> (<em>str</em>) – Входное предложение</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Массив зависимостей в предложении</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="interaction_VK.html" class="btn btn-neutral float-right" title="4. Интеграция с Вконтакте" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="posts.html" class="btn btn-neutral float-left" title="2. Создания постов" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Team Vadim
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

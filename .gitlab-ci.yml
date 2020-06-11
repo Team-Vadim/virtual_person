@@ -1,0 +1,57 @@
+image: python:latest
+cache:
+  paths:
+    - ~/.cache/pip/
+before_script:
+  - python -V
+stages:
+  - test
+  - pylint
+  - pycodestyle
+  - docs
+
+test:
+  stage: test
+  before_script:
+    - pip install -r ci/coverage-requirements.txt
+  script:
+     - ./ci/code-coverage.sh
+  artifacts:
+    paths:
+      - ./website/public/coverage.svg
+
+pycodestyle:
+  stage: pycodestyle
+  before_script:
+    - pip install -r ci/pep8-requirements.txt
+  script:
+    - ci/pycodestyle_runner.sh
+  artifacts:
+    paths:
+      - ./public/pep8.svg
+
+pylint:
+  stage: pylint
+  before_script:
+    - pip install -r ci/pylint-requirements.txt
+  script:
+    - ci/pylint-runner.sh
+  artifacts:
+    paths:
+      - ./public/pylint.svg
+
+sphinx:
+  stage: docs
+  before_script:
+    - pip install -r ci/sphinx-requirements.txt
+  script:
+    - cd docs
+    - make html
+    - cd ..
+    - mv docs/build/html public/docs
+    - ci/sphinx-runner.sh
+  artifacts:
+    paths:
+      - ./public/docs
+      - ./public/sphinx.svg
+      - ./public/release.svg

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Virtual Vadim{% endblock %}</title>
+    {% load static %}
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/img/favicon.ico'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base-css.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/start.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{%  static '/img/favicon.ico' %}" type="image/x-icon">
+<script>
+  window.onload = function () {
+    document.body.classList.add('loaded_hiding');
+    window.setTimeout(function () {
+      document.body.classList.add('loaded');
+      document.body.classList.remove('loaded_hiding');
+    }, 500);
+  }
+</script>
+</head>
+
+<body style="overflow: scroll">
+
+
+<div class="preloader">
+    <img class="beda" src="/static/img/beda.png">
+  <div class="preloader__row">
+      <img class="beda" src="/static/img/beda.png">
+  </div>
+</div>
+
+
+<header style="width: 100%">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/start.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+	<div class="overlay">
+<!--<h1>Virtual Vadim</h1>-->
+
+        <table class="vv">
+            <tr>
+                <th><div class="gradz"><h5>V</h5></div></th>
+                <th class="vv2">irtual</th>
+                <th>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+                 <th><div class="gradz"><h5>V</h5></div></th>
+                <th class="vv2">adim</th>
+            </tr>
+        </table>
+    <h3>СОЗДАЙ СВОЕГО ВИРТУАЛЬНОГО ЧЕЛОВЕКА</h3>
+
+    <table style="text-align: right; align: right; width: 20%; transform: translate(170%,-170%); height: 5px" >
+         <tr>
+             <th>
+                    {% if user > 0 %}
+        <a href="/accounts/{{user}}/"><button class="startbutton">ЛИЧНЫЙ КАБИНЕТ</button></a>
+    {% endif %}
+    {% if user == None %}
+        <a href="accounts/login/"><button class="startbutton">ВХОД</button></a>
+    {% endif %}</th>
+            <th>
+                {% if user > 0 %}
+        <a href="accounts/logout/"><button class="startbutton">ВЫЙТИ</button></a>
+                {% endif %}
+            {% if user == None %}
+        <a href="accounts/signup/"><button class="startbutton">РЕГИСТРАЦИЯ</button></a>
+             {% endif %}
+
+            </th>
+         </tr>
+    </table>
+
+
+
+
+        <table>
+            <tr>
+                <th>ПОЛЬЗОВАТЕЛЕЙ</th>
+                <th>СОЗДАНО БОТОВ</th>
+                <th>БОТОВ В РАБОТЕ</th>
+            </tr>
+            <tr>
+                <th class="grad"><h2>{{count_user}}</h2></th>
+                <th class="grad"><h2>{{count_bot_all}}</h2></th>
+                <th class="grad"><h2>{{count_bot_active}}</h2></th>
+
+            </tr>
+        </table>
+
+<br>
+
+
+ <a href="/bot/"><svg class="liquid-button"
+     data-text="СОЗДАТЬ"
+     data-force-factor="0.1"
+     data-layer-1-viscosity="0.5"
+     data-layer-2-viscosity="0.4"
+     data-layer-1-mouse-force="400"
+     data-layer-2-mouse-force="500"
+     data-layer-1-force-limit="1"
+     data-layer-2-force-limit="2"
+     data-color1=" #24303F"
+     data-color2="#fc6767"
+     data-color3="#ec008c"></svg></a>
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.4/dat.gui.min.js'></script>
+<script src="/static/js/button.js"></script>
+		</div>
+</header>
+
+<div class="mouse_scroll">
+	<div class="mouse">
+		<div class="wheel"></div>
+	</div>
+	<div>
+		<span class="m_scroll_arrows unu"></span>
+		<span class="m_scroll_arrows doi"></span>
+		<span class="m_scroll_arrows trei"></span>
+	</div>
+</div>
+
+
+<table align="center" style=" margin: auto; width: 90%;
+	 text-align: center; border-spacing: 30px 60px;">
+    <tr>
+        <th class="block"><div><img src="/static/img/lock.png" border="0" height="100"><br>Безопасность</div><br><h6>Персональные данные <br>пользователей зашифрованы</h6><br><div style="font-size: 6pt">Мы честно ничего не будем трогать</div></th>
+        <th class="block"><div><img src="/static/img/medal.png" border="0" height="100"><br>Высокое качество</div><br><h6>Гарантия высокого качества<br> работы ботов</h6></th>
+        <th class="block"><div ><img src="/static/img/speed.png" border="0" height="100"><br>Скорость</div><br><h6>Высокая скорость работы<br> сайта и ботов</h6></th>
+    </tr>
+    <tr>
+        <th class="block"><div ><img src="/static/img/oom.png" border="0" height="100"><br>Удобный интерфейс</div><br><h6>Интерфейс в стиле миинимализма <br>не вызовет трудностей</h6></th>
+        <th class="block"><div ><img src="/static/img/person.png" border="0" height="100"><br>Индивидуальные параметры</div><br><h6>Поведение бота регулируется <br>выбранными параметрами</h6></th>
+       <th class="block"> <div ><img src="/static/img/sup.png" border="0" height="100"><br>Поддержка</div><br><h6>Круглосуточная работа <br>службы поддержки</h6></th>
+    </tr>
+</table>
+
+{% include "footer.html" %}
+
+</body>
+</html>
+
+<script>
+    function redirectReg(){ window.location = 'accounts/signup/'; }
+    function redirectIn(){ window.location = 'accounts/login/'; }
+    function redirectOut(){ window.location = 'accounts/logout/'; }
+    function redirectLK(){ window.location = 'lk/{{user.id}}/'; }
+</script>
+
+

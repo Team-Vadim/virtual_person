@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title%} Ошибка {% endblock %}
+
+{% block static %}
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/lk.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base-css.css' %}">
+{% endblock %}
+
+{% block style %} 
+	<canvas id="canvas" data-image="https://pngimage.net/wp-content/uploads/2018/06/человек-png-иконка-8.png"></canvas>
+    	<script src="/static/js/base-js.js"></script>
+{% endblock %}
+
+{% block content%}
+	<div class="intro" style="transform: translate(-50%, -50%);">
+		<div class="mainlabel unselectable">Этот аккаунт вам не принадлежит.</div><br>
+		<div class="mainlabel unselectable">Не пытайтесь в него попасть.</div><br>
+		<a href="/"><button>ГЛАВНАЯ</button></a>
+		<a href="/accounts/{{user.id}}/"><button>ЛИЧНЫЙ КАБИНЕТ</button></a>
+	</div>
+	{% include "footer.html" %}
+{% endblock %}
+
+

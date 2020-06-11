@@ -1,0 +1,834 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ru" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ru" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Создания постов &mdash; документация Virtual Vadim 1.0.0</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="3. Создание сообщений" href="messages.html" />
+    <link rel="prev" title="1. Website „Virtual Vadim“" href="website.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Virtual Vadim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="website.html">1. Website „Virtual Vadim“</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Создания постов</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-counter">2.1. Cчетчик индексов в базе данных</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dictogram">2.2. Класс распределения элементов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-markov">2.3. Обертка цепи Маркова</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-markov_chain">2.4. Цепь Маркова</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-read_files">2.5. Чтение текстовых файлов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-editor">2.6. Обработка текстовыз файлов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tokenizer">2.7. Токенизатор текста</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="messages.html">3. Создание сообщений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction_VK.html">4. Интеграция с Вконтакте</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Virtual Vadim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li><span class="section-number">2. </span>Создания постов</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/posts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">2. </span>Создания постов<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Работает на цепях Маркова</p>
+<div class="section" id="module-counter">
+<span id="c"></span><h2><span class="section-number">2.1. </span>Cчетчик индексов в базе данных<a class="headerlink" href="#module-counter" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="counter.Counter">
+<em class="property">class </em><code class="sig-prename descclassname">counter.</code><code class="sig-name descname">Counter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#counter.Counter" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Счетчик индексов в базе данных</p>
+<dl class="py method">
+<dt id="counter.Counter.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#counter.Counter.get" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение „last_id“</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>collection_name</strong> (<em>str</em>) – имя коллекции</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>last_id</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="counter.Counter.increment">
+<code class="sig-name descname">increment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_name</span></em>, <em class="sig-param"><span class="n">increment_amount</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#counter.Counter.increment" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Увеличение поля „last_id“ для „collection_name“ на „increment_amount“</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collection_name</strong> (<em>str</em>) – имя коллекции</p></li>
+<li><p><strong>increment_amount</strong> (<em>int</em>) – значение приращения</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="counter.Counter.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_name</span></em>, <em class="sig-param"><span class="n">last_id</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#counter.Counter.initialize" title="Ссылка на это определение">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collection_name</strong> (<em>str</em>) – имя коллекции</p></li>
+<li><p><strong>last_id</strong> (<em>int</em>) – id последнего элемента</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="counter.Counter.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#counter.Counter.update" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обновление поля „last_id“ для „collection_name“ в коллекции „counter“</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>collection_name</strong> (<em>str</em>) – имя коллекции</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dictogram">
+<span id="id2"></span><h2><span class="section-number">2.2. </span>Класс распределения элементов<a class="headerlink" href="#module-dictogram" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="dictogram.Dictogram">
+<em class="property">class </em><code class="sig-prename descclassname">dictogram.</code><code class="sig-name descname">Dictogram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictogram.Dictogram" title="Ссылка на это определение">¶</a></dt>
+<dd><dl class="py method">
+<dt id="dictogram.Dictogram.count">
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictogram.Dictogram.count" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращаем значение счетчика элемента, или 0</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>item</strong> – значение</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>значение счетчика</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dictogram.Dictogram.return_random_word">
+<code class="sig-name descname">return_random_word</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictogram.Dictogram.return_random_word" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вернуть случайное слово</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>случайное слово</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dictogram.Dictogram.return_weighted_random_word">
+<code class="sig-name descname">return_weighted_random_word</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictogram.Dictogram.return_weighted_random_word" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Сгенерировать псевдослучайное число между 0 и (n-1), где n - общее число слов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>случайное число</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dictogram.Dictogram.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictogram.Dictogram.update" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обновляем распределение элементами из имеющегося итерируемого набора данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>iterable</strong> – optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-markov">
+<span id="id3"></span><h2><span class="section-number">2.3. </span>Обертка цепи Маркова<a class="headerlink" href="#module-markov" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="markov.MarkovGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">markov.</code><code class="sig-name descname">MarkovGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">strategy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov.MarkovGenerator" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обертка для „class MarkovChain“ и „class Tokenizer“</p>
+<dl class="py class">
+<dt id="markov.MarkovGenerator.GenerateStrategy">
+<em class="property">class </em><code class="sig-name descname">GenerateStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">window_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov.MarkovGenerator.GenerateStrategy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Стратегия генерации текста</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="markov.MarkovGenerator.RetrainStrategy">
+<em class="property">class </em><code class="sig-name descname">RetrainStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">text_path</span></em>, <em class="sig-param"><span class="n">window_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov.MarkovGenerator.RetrainStrategy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Стратегия дообучения цепи Маркова</p>
+<dl class="py method">
+<dt id="markov.MarkovGenerator.RetrainStrategy.retrain">
+<code class="sig-name descname">retrain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#markov.MarkovGenerator.RetrainStrategy.retrain" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Запуск дообучения цепи Маркова</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="markov.MarkovGenerator.Strategy">
+<em class="property">class </em><code class="sig-name descname">Strategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">text_path</span></em>, <em class="sig-param"><span class="n">window_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov.MarkovGenerator.Strategy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовая стратегия генератора</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="markov.MarkovGenerator.TrainStrategy">
+<em class="property">class </em><code class="sig-name descname">TrainStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">text_path</span></em>, <em class="sig-param"><span class="n">window_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov.MarkovGenerator.TrainStrategy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Стратегия для первичного запуска цепи Маркова</p>
+<dl class="py method">
+<dt id="markov.MarkovGenerator.TrainStrategy.train">
+<code class="sig-name descname">train</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#markov.MarkovGenerator.TrainStrategy.train" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Запуск первичнго обучения цепи Маркова</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov.MarkovGenerator.generate_sentence">
+<code class="sig-name descname">generate_sentence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_sent</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov.MarkovGenerator.generate_sentence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерация предложения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>size_sent</strong> (<em>int</em>) – количество слов в пердложение</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>сгенеиррованное предложение</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov.MarkovGenerator.generate_sentences">
+<code class="sig-name descname">generate_sentences</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">count</span></em>, <em class="sig-param"><span class="n">size_sent</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov.MarkovGenerator.generate_sentences" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерация нескольких предложений</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>count</strong> (<em>int</em>) – количесвто предложений</p></li>
+<li><p><strong>size_sent</strong> (<em>int</em>) – количесвто слов в предложение</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>сгенерированные предложения</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-markov_chain">
+<span id="id4"></span><h2><span class="section-number">2.4. </span>Цепь Маркова<a class="headerlink" href="#module-markov_chain" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="markov_chain.MarkovChain">
+<em class="property">class </em><code class="sig-prename descclassname">markov_chain.</code><code class="sig-name descname">MarkovChain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">window_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_chain.MarkovChain" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Цепь Маркова</p>
+<dl class="py method">
+<dt id="markov_chain.MarkovChain.create_model_from_text">
+<code class="sig-name descname">create_model_from_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_chain.MarkovChain.create_model_from_text" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Создание цепи Маркова из текста</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>text_path</strong> (<em>str</em>) – путь к тексту</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>модель цепи Маркова</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_chain.MarkovChain.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">length</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_chain.MarkovChain.generate" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерация предложения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>length</strong> (<em>int</em>) – количество слов в тексте</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>сгенерированное предложение</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_chain.MarkovChain.generate_random_sentence">
+<code class="sig-name descname">generate_random_sentence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">start_sequence</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_chain.MarkovChain.generate_random_sentence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерация предложения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> (<em>int</em>) – количестов слов в предложение</p></li>
+<li><p><strong>start_sequence</strong> (<em>str</em>) – начало предложения</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>предложение</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_chain.MarkovChain.generate_random_start_sequence">
+<code class="sig-name descname">generate_random_start_sequence</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#markov_chain.MarkovChain.generate_random_start_sequence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерация начала предложения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>случайное начало предложения</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_chain.MarkovChain.get_random_start_sequence">
+<code class="sig-name descname">get_random_start_sequence</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#markov_chain.MarkovChain.get_random_start_sequence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение случайного начала предложения из базы данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>начало предложения</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_chain.MarkovChain.get_sequence">
+<code class="sig-name descname">get_sequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_chain.MarkovChain.get_sequence" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение значений из модели по ключу</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – ключ</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_chain.MarkovChain.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_chain.MarkovChain.save" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Сохранение цепи Маркова в базу данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – модель цепи Маркова</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="markov_chain.MarkovChain.set_tokenizer">
+<code class="sig-name descname">set_tokenizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tokenizer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#markov_chain.MarkovChain.set_tokenizer" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Инициализация токенизатора для цепи Маркова</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>tokenizer</strong> (<em>class tokenizer.Tokenizer</em>) – токенизатор</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-read_files">
+<span id="id5"></span><h2><span class="section-number">2.5. </span>Чтение текстовых файлов<a class="headerlink" href="#module-read_files" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py function">
+<dt id="read_files.read_files">
+<code class="sig-prename descclassname">read_files.</code><code class="sig-name descname">read_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dir_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#read_files.read_files" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Чтение текстовых файлов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>dir_path</strong> – str -  путь к директории с файлами</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-editor">
+<span id="id6"></span><h2><span class="section-number">2.6. </span>Обработка текстовыз файлов<a class="headerlink" href="#module-editor" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py function">
+<dt id="editor.parse_text">
+<code class="sig-prename descclassname">editor.</code><code class="sig-name descname">parse_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dir_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#editor.parse_text" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обработка текстовых файлов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>dir_path</strong> (<em>str</em>) – Путь до директории с тектсами</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>текст</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tokenizer">
+<span id="id7"></span><h2><span class="section-number">2.7. </span>Токенизатор текста<a class="headerlink" href="#module-tokenizer" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt id="tokenizer.Tokenizer">
+<em class="property">class </em><code class="sig-prename descclassname">tokenizer.</code><code class="sig-name descname">Tokenizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">strategy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Токенизатор текста</p>
+<dl class="py class">
+<dt id="tokenizer.Tokenizer.FullLoadStrategy">
+<em class="property">class </em><code class="sig-name descname">FullLoadStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.FullLoadStrategy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Стратегия, полностью загружающая токенизатор из базы данных</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tokenizer.Tokenizer.GenerateNewStrategy">
+<em class="property">class </em><code class="sig-name descname">GenerateNewStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.GenerateNewStrategy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Стратегия, предназначенная для первичного запуска токенизатора</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tokenizer.Tokenizer.LoadStrategy">
+<em class="property">class </em><code class="sig-name descname">LoadStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.LoadStrategy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Стратегия для работы с токенизатором из базы данных</p>
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.LoadStrategy.idx_to_word">
+<code class="sig-name descname">idx_to_word</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.LoadStrategy.idx_to_word" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение слова для заданного индекса из базы данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>idx</strong> (<em>int</em>) – индекс</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>слово по заданному индексу</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.LoadStrategy.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em>, <em class="sig-param"><span class="n">counter</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.LoadStrategy.update" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавление слова в токенизатор</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>word</strong> (<em>str</em>) – слово</p></li>
+<li><p><strong>counter</strong> (<em>class counter.Counter</em>) – счетчик</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.LoadStrategy.update_from_text">
+<code class="sig-name descname">update_from_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text_path</span></em>, <em class="sig-param"><span class="n">counter</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.LoadStrategy.update_from_text" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обновление токенизатора по тексту</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text_path</strong> (<em>str</em>) – путь к тексту</p></li>
+<li><p><strong>counter</strong> (<em>class counter.Counter</em>) – счетчик</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.LoadStrategy.update_many">
+<code class="sig-name descname">update_many</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">words</span></em>, <em class="sig-param"><span class="n">counter</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.LoadStrategy.update_many" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Множественный вызов def update(word, counter)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>words</strong> (<em>list</em>) – список слов</p></li>
+<li><p><strong>counter</strong> (<em>class counter.Counter</em>) – счетчик</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.LoadStrategy.word_to_idx">
+<code class="sig-name descname">word_to_idx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.LoadStrategy.word_to_idx" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение идекса по заданному слову из базы данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>word</strong> (<em>str</em>) – слово</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>индекс по заданному слову</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="tokenizer.Tokenizer.Strategy">
+<em class="property">class </em><code class="sig-name descname">Strategy</code><a class="headerlink" href="#tokenizer.Tokenizer.Strategy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовая стратегия токенизатора</p>
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.Strategy.idx_to_word">
+<code class="sig-name descname">idx_to_word</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.Strategy.idx_to_word" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение слова для заданного индекса</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>idx</strong> (<em>int</em>) – индекс</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>слово по заданному индексу</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.Strategy.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.Strategy.update" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавление слова в токенизатор</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>word</strong> (<em>str</em>) – слово</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.Strategy.word_to_idx">
+<code class="sig-name descname">word_to_idx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.Strategy.word_to_idx" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получение индекса для заданного слова</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>word</strong> (<em>str</em>) – слово</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>индекс по заданному слову</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.change_strategy">
+<code class="sig-name descname">change_strategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">strategy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.change_strategy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Смена стратегии</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>strategy</strong> (<em>class tokenizer.Tokenizer.Strategy</em>) – новая стратегия</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.idx2word">
+<code class="sig-name descname">idx2word</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.idx2word" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вызов метода „idx2word“ для заданной стратегии</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>idx</strong> (<em>int</em>) – индекс</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>слово по заданному индексу</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.int_to_text">
+<code class="sig-name descname">int_to_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text_as_int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.int_to_text" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Конвертация токенизированного текста в обычный</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>text_as_int</strong> (<em>list</em><em>, </em><em>optional</em>) – токенизированный текст</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>текст</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.save" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Сохранение токенизатора в базу данных</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>collection</strong> – имя коллекции</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.text_to_int">
+<code class="sig-name descname">text_to_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.text_to_int" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Конвертация текста в цифры</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em><em>, </em><em>optional</em>) – текст</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>токенизированный текст</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tokenizer.Tokenizer.word2idx">
+<code class="sig-name descname">word2idx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tokenizer.Tokenizer.word2idx" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вызов метода „word2idx“ для заданной стратегии</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>word</strong> (<em>str</em>) – слово</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>индекс по заданному слову</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="messages.html" class="btn btn-neutral float-right" title="3. Создание сообщений" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="website.html" class="btn btn-neutral float-left" title="1. Website „Virtual Vadim“" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Team Vadim
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

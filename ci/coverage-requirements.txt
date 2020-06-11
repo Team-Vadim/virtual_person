@@ -1,0 +1,10 @@
+pydub
+requests
+vk_api
+vk_messages
+coverage-badge
+coverage
+Django
+sqlparse
+pymysql
+mysqlclient

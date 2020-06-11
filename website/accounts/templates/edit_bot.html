@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Редактирование бота {% endblock %}
+
+
+{% block script %}
+    <script src="/static/js/base-js.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="intro" style="transform: translate(-50%, -50%);">
+
+
+        <div class="mainlabel">Редактирование бота:</div><br><br><br>
+
+        <form method="post">
+            {% csrf_token %}
+        Имя бота: {{ form.name }}<br><br>
+        Виртуальный возраст бота: {{ form.age }}<br><br>
+        Пол: {{ form.gender }}<br><br>
+        Социальная сеть: {{ form.social_network }}<br><br>
+        Делать посты раз в: {{ form.time }}<br><br>
+        Логин пользователя: {{ form.login }}<br><br>
+        Пароль пользователя: <input type="password" name="password" value="{{form.password.value}}" minlength="1" required><br><br>
+        Отвечать на сообщения: {{ form.active_messages }}<br><br>
+        Писать посты: {{ form.active_posts }}<br><br>
+        Принимать в друзья: {{ form.active_friends }}<br><br><br>
+
+            {% for field in form %}
+               <!-- {{ field.label_tag }}
+
+                <div class="select-box"> {{ field }} </div> -->
+
+                {% if field.help_text %}
+                    <small style="display: none">{{ field.help_text }}</small>
+                {% endif %}
+
+                {% for error in field.errors %}
+                    <p style="color: #ff0000">{{ error }}</p>
+                {% endfor %}
+
+            {% endfor %}
+            <button onclick="history.back();{ return false; }">НАЗАД</button>
+            <button type="submit">СОХРАНИТЬ</button>
+        </form>
+    </div>
+    {% include "footer.html" %}
+    <script>
+        window.onload = function(){
+            if('{{mess}}' !== '')
+            alert('{{mess}}');
+        }
+    </script>
+{% endblock %}

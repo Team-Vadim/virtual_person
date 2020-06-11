@@ -1,0 +1,10 @@
+Как работать с audios.py (windows)
+<<https://yandex.ru/q/question/science/prodat_dushu_diavolu_bez_obriada_na_bez_t_0d6380ec/>>
+1) Скачать сборку с https://ffmpeg.zeranoe.com/builds/
+    v = 4.2.2
+    linking = Static
+    system - в зависимости от Вашей системы
+2) Распаковать архив
+3) В path добавить путь до ffmpeg/bin
+4) Перезагрузить систему (иначе магия не случится)
+4.1) pip install pydub

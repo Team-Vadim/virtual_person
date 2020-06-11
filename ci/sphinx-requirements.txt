@@ -1,0 +1,5 @@
+sphinx
+anybadge
+sphinx_rtd_theme
+django
+mysqlclient

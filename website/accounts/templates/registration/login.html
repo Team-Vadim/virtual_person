@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Вход</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base-css.css' %}">
+    <link rel="shortcut icon" href="{%  static '/img/favicon.ico' %}" type="image/x-icon">
+</head>
+
+<body>
+<canvas id="canvas" data-image="https://pngimage.net/wp-content/uploads/2018/06/человек-png-иконка-8.png"></canvas>
+<script src="/static/js/base-js.js"></script>
+<div class="intro" style="transform: translate(-50%, -50%);">
+{% block content %}
+
+    {% if form.errors %}
+        <p>Неправильный логин и/или пароль. Попробуйте ещё раз.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p> У вас нет доступа к этой странице. Чтобы продолжить,
+                войдите пожалуйста через аккаунт, имеющий доступ.</p>
+        {% else %}
+            <p>Войдите, чтобы увидеть эту страницу.</p>
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+    <div class="mainlabel">ВХОД</div><br><br><br>
+        {% csrf_token %}
+
+        Логин: <br><br> {{ form.username }} <br><br>
+        Пароль: <br><br>{{ form.password }} <br><br><br>
+        <button type="submit">ВОЙТИ</button>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </form>
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <h9><a color="white" href="{% url 'password_reset' %}">Забыли пароль?</a><br><br>
+    <a color="white" href="{% url 'signup' %}">Зарегистрироваться</a></h9>
+
+{% endblock %}
+</div>
+{% include "footer.html" %}
+</body>
+</html>
