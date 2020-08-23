@@ -8,7 +8,7 @@
 
 Ссылка на презентацию проекта:
 
-https://prezi.com/yi1irhwlpkvg/?utm_campaign=share&utm_medium=copy
+https://prezi.com/yi1irhwlpkvg/
 
 Скринкаст:
 
