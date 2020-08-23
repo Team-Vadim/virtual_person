@@ -10,6 +10,6 @@
 
 https://prezi.com/yi1irhwlpkvg/
 
-Скринкаст:
+Видео с презентацией проекта:
 
-TBD
+https://drive.google.com/file/d/1C4N5sROmGwR_XjvGbOAtGxwoonuFwkLT/view?usp=sharing
