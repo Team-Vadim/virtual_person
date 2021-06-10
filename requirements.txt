@@ -27,7 +27,7 @@ django-rest-framework==0.1.0
 djangorestframework==3.11.0
 docopt==0.6.2
 docutils==0.16
-fastapi==0.47.1
+fastapi==0.65.2
 fuzzywuzzy==0.17.0
 gast==0.2.2
 google-auth==1.16.0
